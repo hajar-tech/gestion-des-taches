@@ -65,7 +65,7 @@ void afficher(struct tache tab[],int n ){
 	    	
 	  for(int i=0;i<size;i++){ 
 	    printf("\t ********** information sur les taches: %d**********\t\n",i+1);
-		printf(" Titre : %s\n Descriprtion : %s\n +++++ Date_echeance : \n Jour : %d\n Mois : %s\n Annee : %d\nPriorite : %s\n  ",tab[i].titre,tab[i].description,
+		printf(" Titre : %s\n Descriprtion : %s\n Date_echeance : \n \tJour / Mois / Annee : \t%d / %s / %d\nPriorite : %s\n  ",tab[i].titre,tab[i].description,
 		tab[i].date_echeance.jour,tab[i].date_echeance.mois,tab[i].date_echeance.annee,tab[i].priorite);
 	   //size=i+1;
 	}
@@ -86,12 +86,12 @@ void modifier(struct tache tab[] ,int n ,int indice){
 			
 	          do{
 	printf("******** menu de modification ******** \t  \n");
-    printf("\t1 : titre\n");
-	printf("\t2 : description\n");
-	printf("\t3 : date d'echeance\n");
-	printf("\t4 : priorite\n");
-	printf("\t5 : tout les parametres\n");
-	printf("\t6 : quitter\n");
+    printf("\t\t1 : titre\n");
+	printf("\t\t2 : description\n");
+	printf("\t\t3 : date d'echeance\n");
+	printf("\t\t4 : priorite\n");
+	printf("\t\t5 : tout les parametres\n");
+	printf("\t\t6 : quitter\n");
 	printf("\tchoisir le parametre a modifier de 1 a 6 : ");
 	scanf("%d",&c);
 
@@ -105,8 +105,50 @@ void modifier(struct tache tab[] ,int n ,int indice){
 	                 scanf("%s",&tab[indice-1].description);
 			    break;
 		        case 3:
-			       printf("entrer la nouvelle date d\'echeance de la tache %d : ",indice);
-	               scanf("%s",tab[indice-1].date_echeance);
+		        	int k;
+		        	 do{
+		        	printf("******** menu de modification de la date ******** \t  \n");
+                    printf("\t\t1 : jour\n");
+	                printf("\t\t2 : mois\n");
+					printf("\t\t3 : annee\n");
+					printf("\t\t4 : date\n");
+					printf("\t\t5 : quitter\n");
+					printf("\tchoisir le parametre a modifier de 1 a 5 : ");
+					scanf("%d",&k);
+					switch(k){
+					case 1:
+			        	printf("entrer le nouveau jour de la tache %d : ",indice);
+	                	scanf("%d",&tab[indice-1].date_echeance.jour);
+		    		break;
+		        	case 2:
+			        	printf("entrer le nouveau mois de la tache %d : ",indice);
+	                 	scanf("%s",tab[indice-1].date_echeance.mois);
+			    	break;
+			    	case 3:
+			        	printf("entrer la nouvelle annee de la tache %d : ",indice);
+	                 	scanf("%d",&tab[indice-1].date_echeance.annee);
+	                 	if(tab[indice-1].date_echeance.annee<2024){
+	                 		printf("cette date est deja depasser.");
+						 }
+			    	break;
+			    	case 4:
+			    		printf("entrer le nouveau jour de la tache %d : ",indice);
+	                	scanf("%d",tab[indice-1].date_echeance.jour);
+	                	printf("le jour est modifiee");
+	                	printf("entrer le nouveau mois de la tache %d : ",indice);
+	                 	scanf("%s",&tab[indice-1].date_echeance.mois);
+	                 	printf("le mois est modifiee");
+	                 	printf("entrer la nouvelle annee de la tache %d : ",indice);
+	                 	scanf("%d",&tab[indice-1].date_echeance.annee);
+	                 	printf("l\'annee est modifiee");
+	                break;
+					case 5:
+					break;
+					default : printf("veuillez choisir 1 , 2 , 3 ,4 ou 5");
+					break; 	
+					}}
+					while(k!=5);
+			       
 			    break;
 	         	case 4:
 			        printf("entrer la nouvelle priorite de la tache %d : ",indice);
@@ -119,15 +161,19 @@ void modifier(struct tache tab[] ,int n ,int indice){
 	              printf("entrer la nouvelle description de la tache %d : ",indice);
 	              scanf("%s",&tab[indice-1].description);
 	    
-	              printf("entrer la nouvelle date d\'echeance de la tache %d : ",indice);
-	              scanf("%s",tab[indice-1].date_echeance);
+	              	printf("entrer le nouveau jour de la tache %d : ",indice);
+	            	scanf("%d",tab[indice-1].date_echeance.jour);
+	                printf("entrer le nouveau mois de la tache %d : ",indice);
+	                scanf("%s",&tab[indice-1].date_echeance.mois);
+	                printf("entrer la nouvelle annee de la tache %d : ",indice);
+	                scanf("%d",&tab[indice-1].date_echeance.annee);
 	     
 	              printf("entrer la nouvelle priorite de la tache %d : ",indice);
 	              scanf("%s",tab[indice-1].priorite);
 			    break;
 			    case 6:
 			    	break;
-		            default : printf("veuillez choisir 1 , 2 , 3 ou 4");
+		            default : printf("veuillez choisir 1 , 2 , 3 ,4 ou 5");
 			 } }
 			 while(c!=6);}
 			 }}
@@ -159,13 +205,13 @@ void supprimer(struct tache tab[] ,int n ,int indice){
 int main(){	
 	struct tache tab[1000]; // Un tableau pour stocker jusqu'à n tache 
    do{
-	printf("\t ******** menu ********\t  \n");
-    printf("\t\t1 : ajouter\n");
-	printf("\t\t2 : afficher\n");
-	printf("\t\t3 : modifier\n");
-	printf("\t\t4 : supprimer\n");
-	printf("\t\t5 : quitter\n");
-	printf("\tchoisir un nombre de 1 a 4 : ");
+	printf("\t\t ************ menu ************\t\t  \n");
+    printf("\t\t\t1 : ajouter\n\n");
+	printf("\t\t\t2 : afficher\n\n");
+	printf("\t\t\t3 : modifier\n\n");
+	printf("\t\t\t4 : supprimer\n\n");
+	printf("\t\t\t5 : quitter\n\n");
+	printf("\t\tchoisir un nombre de 1 a 4 : ");
 	scanf("%d",&choix);
 	switch(choix){
 		case 1: 
