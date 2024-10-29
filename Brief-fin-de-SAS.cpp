@@ -1,25 +1,63 @@
 #include<stdio.h>
-
+#include<time.h>
 int size =0;
 int choix, n ,indice ;
 
 //declaration de la structure date
 struct Date{
 	int jour;
-	char mois[50];
+	int mois;
 	int annee;
 };
 
 //declaaration de la structure Tache
 struct tache{
+	struct Date dateCreation;
 	char titre[100];
 	char description[1000]; 
     struct Date date_echeance;
 	char priorite[15];
 };
+//declaration de la fonction tempActuelle pour retourné le temps d'aujourd'hui
+struct Date tempActuelle(){
+	struct Date t;
+	time_t tempactuelle;//instance de la structue time_t : variable specifique existe dans le fichier <time.h>
+	time(&tempactuelle);
+		//convertir time_t ---> tm struct (seconds ---> string)en utilisant la fonction localtime
+	struct tm *nowTime = localtime(&tempactuelle);
+	t.annee = nowTime->tm_year+1900;
+	t.mois = nowTime->tm_mon+1;
+	t.jour = nowTime->tm_mday;
+	return t;
+	
+}
 
-
-
+//declaration de la methode verification du temps entree
+void verificationTemps(struct tache tab[]){
+	int i;
+	while(1){
+	
+	if (tab[i].date_echeance.annee <tab[i].dateCreation.annee ||
+                     (tab[i].date_echeance.annee == tab[i].dateCreation.annee && 
+                      (tab[i].date_echeance.mois < tab[i].dateCreation.mois || tab[i].date_echeance.mois > 12)) ||
+                     (tab[i].date_echeance.annee == tab[i].dateCreation.annee &&
+                      tab[i].date_echeance.mois == tab[i].dateCreation.mois &&
+                      (tab[i].date_echeance.jour < tab[i].dateCreation.jour ||tab[i].date_echeance.jour > 31))) {
+                printf("La date d'échéance est inférieure à la date actuelle, entrer une nouvelle date pour la tâche %d :\n", i + 1);
+                printf("Année : ");
+                scanf("%d", &tab[i].date_echeance.annee);
+                printf("Mois : ");
+                scanf("%d", &tab[i].date_echeance.mois);
+                printf("Jour : ");
+                scanf("%d", &tab[i].date_echeance.jour);
+            } 
+            // Sortir de la boucle si la date est valide
+            else {
+                break;
+            }
+	
+		}
+}
 
 //declaration de la methode ajouter
 void ajouter (struct tache tab[] ){
@@ -31,29 +69,35 @@ void ajouter (struct tache tab[] ){
 	
      
     	for(int i=size;i<n;i++){
+    	tab[i].dateCreation = tempActuelle();	
 		printf("entrer le titre de la tache %d : ",i+1);
-	    scanf("%99s",tab[i].titre);
+	    scanf(" %[^\n]s",tab[i].titre);
 	    
 	    printf("entrer la descrirtion de la tache %d : ",i+1);
-	    scanf("%999s",tab[i].description);
+	    scanf(" %[^\n]s",tab[i].description);
 	    
 	    printf("entrer le jour de la tache %d : ",i+1);
 	    scanf("%d",&tab[i].date_echeance.jour);
 	    
 	    printf("entrer le mois de la tache %d : ",i+1);
-	    scanf("%49s",tab[i].date_echeance.mois);
+	    scanf("%d",&tab[i].date_echeance.mois);
 	    
 	    printf("entrer l\'annee de la tache %d : ",i+1);
 	    scanf("%d",&tab[i].date_echeance.annee);
+	    verificationTemps(tab);
 	    
 	    printf("entrer la priorite de la tache %d (high or low) : ",i+1);
-	    scanf("%14s",tab[i].priorite);
+	    scanf(" %[^\n]s",tab[i].priorite);
+	    size=i+1; 
+						 }
+	    
+	    
 	    // Lire jusqu'à la fin de la ligne
     // Le format %99[^\n] lit jusqu'à 99 caractères ou jusqu'à un retour à la ligne
-	    size=i+1;
+	    
 	}
 	
-}
+
 
 //declaration de la fonction afficher
 void afficher(struct tache tab[],int n ){
@@ -65,7 +109,7 @@ void afficher(struct tache tab[],int n ){
 	    	
 	  for(int i=0;i<size;i++){ 
 	    printf("\t ********** information sur les taches: %d**********\t\n",i+1);
-		printf(" Titre : %s\n Descriprtion : %s\n Date_echeance : \n \tJour / Mois / Annee : \t%d / %s / %d\nPriorite : %s\n  ",tab[i].titre,tab[i].description,
+		printf(" Titre : %s\n Date de creation jj/mm/aaaa : %d/%d/%d\n Descriprtion : %s\n Date_echeance : \n \tJour / Mois / Annee : \t%d / %d / %d\nPriorite : %s\n  ",tab[i].titre,tab[i].dateCreation.jour,tab[i].dateCreation.mois,tab[i].dateCreation.annee,tab[i].description,
 		tab[i].date_echeance.jour,tab[i].date_echeance.mois,tab[i].date_echeance.annee,tab[i].priorite);
 	   //size=i+1;
 	}
@@ -122,24 +166,25 @@ void modifier(struct tache tab[] ,int n ,int indice){
 		    		break;
 		        	case 2:
 			        	printf("entrer le nouveau mois de la tache %d : ",indice);
-	                 	scanf("%s",tab[indice-1].date_echeance.mois);
+	                 	scanf("%d",&tab[indice-1].date_echeance.mois);
 			    	break;
 			    	case 3:
 			        	printf("entrer la nouvelle annee de la tache %d : ",indice);
 	                 	scanf("%d",&tab[indice-1].date_echeance.annee);
 	                 	if(tab[indice-1].date_echeance.annee<2024){
-	                 		printf("cette date est deja depasser.");
+	                 		printf("cette date est deja depasser.\n");
 						 }
 			    	break;
 			    	case 4:
 			    		printf("entrer le nouveau jour de la tache %d : ",indice);
-	                	scanf("%d",tab[indice-1].date_echeance.jour);
+	                	scanf("%d",&tab[indice-1].date_echeance.jour);
 	                	printf("le jour est modifiee");
 	                	printf("entrer le nouveau mois de la tache %d : ",indice);
-	                 	scanf("%s",&tab[indice-1].date_echeance.mois);
+	                 	scanf("%d",&tab[indice-1].date_echeance.mois);
 	                 	printf("le mois est modifiee");
 	                 	printf("entrer la nouvelle annee de la tache %d : ",indice);
 	                 	scanf("%d",&tab[indice-1].date_echeance.annee);
+	                 	verificationTemps(tab);
 	                 	printf("l\'annee est modifiee");
 	                break;
 					case 5:
@@ -162,14 +207,14 @@ void modifier(struct tache tab[] ,int n ,int indice){
 	              scanf("%s",&tab[indice-1].description);
 	    
 	              	printf("entrer le nouveau jour de la tache %d : ",indice);
-	            	scanf("%d",tab[indice-1].date_echeance.jour);
+	            	scanf("%d",&tab[indice-1].date_echeance.jour);
 	                printf("entrer le nouveau mois de la tache %d : ",indice);
-	                scanf("%s",&tab[indice-1].date_echeance.mois);
+	                scanf("%d",&tab[indice-1].date_echeance.mois);
 	                printf("entrer la nouvelle annee de la tache %d : ",indice);
 	                scanf("%d",&tab[indice-1].date_echeance.annee);
-	     
-	              printf("entrer la nouvelle priorite de la tache %d : ",indice);
-	              scanf("%s",tab[indice-1].priorite);
+	                verificationTemps(tab);	     
+	              	printf("entrer la nouvelle priorite de la tache %d : ",indice);
+	              	scanf("%s",tab[indice-1].priorite);
 			    break;
 			    case 6:
 			    	break;
