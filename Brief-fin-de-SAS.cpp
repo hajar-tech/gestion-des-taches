@@ -253,7 +253,7 @@ void filtrer_par_priorite(struct tache tab[]){
 
 //declaration de la fonction filtrer_par_date_creation
 
- /*void filtrer_par_date_creation(struct tache tab[]){
+ void filtrer_par_date_creation(struct tache tab[]){
 	int j,m,an,found=0;
 		if (size==0){
 	  		printf("\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
@@ -273,7 +273,7 @@ void filtrer_par_priorite(struct tache tab[]){
 		printf("aucune tache exist avec cette date de creation .\n");
 	}
 	
-}}*/
+}}
 
 
 //declaration de la methode supprimer
