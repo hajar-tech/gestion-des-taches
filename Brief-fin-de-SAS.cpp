@@ -344,7 +344,7 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 		int found=0;
 		for(int i=0;i<size;i++){
 		if(strcmp(tab[i].statue,fs)==0){
-			supprimer_par_indice(tab,n,i);	   
+			tab[i]=tab[i+1];	   
 			found=1;
 				size--;
 		}
@@ -352,9 +352,7 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 			printf("\t**Les taches avec priorite %s ont ete supprimee**\n",fs);
 	if(!(found)){
 		 printf("aucune tache avec cette statue.\n");
-	}
-	    
-	
+	}	
 	}}
 
 
@@ -369,7 +367,7 @@ int main(){
 	printf("\t\t\t4 : filtrer\n\n");
 	printf("\t\t\t5 : supprimer\n\n");
 	printf("\t\t\t6 : quitter\n\n");
-	printf("\t\tchoisir un nombre de 1 a 4 : ");
+	printf("\t\tchoisir un nombre de 1 a 6 : ");
 	scanf("%d",&choix);
 	switch(choix){
 		case 1: 
@@ -412,7 +410,33 @@ int main(){
 			  while(f!=4);
 			break;
 		case 5:
-			supprimer_par_indice(tab,n,indice);
+			int s;
+			  do{
+				printf("\t*****menu supprission*****\n");
+				printf("\t 1:supprimer_par_indice\n");
+				printf("\t 2:supprimer_par_date_creation\n");
+				printf("\t 3:supprimer_par_statue\n");
+				printf("\t 4:quitter\n");
+				printf("\tentrer votre choix: ");
+				scanf("%d",&s);
+				switch(s){
+					case 1:
+						supprimer_par_indice(tab,n,indice);
+					break;
+					case 2:
+						//supprimer_par_date_creation(tab);
+					break;
+					case 3:
+						supprimer_par_statue(tab,n);
+					break;
+					case 4:
+						break;
+					default : printf("\tchoix non reconu!!");
+	
+				}
+				
+			  }
+			  while(f!=4);			
 			break;
 		case 6:
 			break;
