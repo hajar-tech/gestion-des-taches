@@ -62,34 +62,36 @@ void verificationTemps(struct tache tab[]){
 
 //declaration de la methode ajouter
 void ajouter (struct tache tab[] ){
-	printf("entrer le nombre de tache a ajouter : ");
+		printf("-----------------------------ajouter des t%cches---------------------------------------\n",131);
+	
+	printf("\n\tentrer le nombre de tache a ajouter : ");
 	scanf("%d",&n);
      tab[n] ; 
 
       n=size+n;    
     	for(int i=size;i<n;i++){
     	tab[i].dateCreation = tempActuelle();
-		printf("\n*********tache %d *********\n",i+1)	;
-		printf("entrer le titre  : ");
+		printf("\n################### La tache %d ####################\n",i+1)	;
+		printf("\n\n\tentrer le titre  : ");
 	    scanf(" %[^\n]s",tab[i].titre);
 	    
-	    printf("entrer la descrirtion : ");
+	    printf("\n\n\tentrer la descrirtion : ");
 	    scanf(" %[^\n]s",tab[i].description);
 	    
-	    printf("entrer le jour : ");
+	    printf("\n\n\tentrer le jour : ");
 	    scanf("%d",&tab[i].date_echeance.jour);
 	    
-	    printf("entrer le mois : ");
+	    printf("\n\n\tentrer le mois : ");
 	    scanf("%d",&tab[i].date_echeance.mois);
 	    
-	    printf("entrer l\'annee : ");
+	    printf("\n\n\tentrer l\'annee : ");
 	    scanf("%d",&tab[i].date_echeance.annee);
 	    verificationTemps(tab);
 	    
-	    printf("entrer la priorite (high or low) : ");
+	    printf("\n\n\tentrer la priorite (high or low) : ");
 	    scanf(" %[^\n]s",tab[i].priorite);
 	    
-	    printf("entrer la statue (a_faire, en_cours, termine) : ");
+	    printf("\n\n\tentrer la statue (a_faire, en_cours, termine) : ");
 	    scanf(" %[^\n]s",tab[i].statue);
 	    size=i+1; 
 						 }
@@ -101,14 +103,16 @@ void ajouter (struct tache tab[] ){
 //declaration de la fonction afficher
 void afficher(struct tache tab[],int n ){
 	//affichage des information de chaque personne
+		printf("-----------------------------affichage des t%cches---------------------------------------\n",131);
+	
 	  
 	  if (size==0){
-	  		printf("\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
+	  		printf("\n\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
 	  }else{
 	    	
 	  for(int i=0;i<size;i++){ 
-	    printf("\t ********** information sur la tache: %d **********\t\n",i+1);
-		printf(" \tTitre : %s\n \tDate de creation jj/mm/aaaa : %d/%d/%d\n \tDescriprtion : %s\n \tDate_echeance jj/mm/aaaa : %d/%d/%d\n \tPriorite : %s\n \t\tStatue : %s\n  ",tab[i].titre,tab[i].dateCreation.jour,tab[i].dateCreation.mois,tab[i].dateCreation.annee,tab[i].description,
+	    printf("\n\t ************************ information sur la tache: %d ***********************\t\n",i+1);
+		printf(" \n\tTitre : %s\n \n\tDate de creation jj/mm/aaaa : %d/%d/%d\n \n\tDescriprtion : %s\n \n\tDate_echeance jj/mm/aaaa : %d/%d/%d\n \n\tPriorite : %s\n \n\tStatue : %s\n  ",tab[i].titre,tab[i].dateCreation.jour,tab[i].dateCreation.mois,tab[i].dateCreation.annee,tab[i].description,
 		tab[i].date_echeance.jour,tab[i].date_echeance.mois,tab[i].date_echeance.annee,tab[i].priorite,tab[i].statue);
 	   //size=i+1;
 	}
@@ -117,130 +121,135 @@ void afficher(struct tache tab[],int n ){
 
 //declaration de la fonction modifier
 void modifier(struct tache tab[] ,int n ,int indice){
+		printf("-----------------------------modifier une t%cche---------------------------------------\n",131);
+	
 	int c;
 	if (size==0){
-	  		printf("\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
+	  		printf("\n\til y\'a aucune tache a modifier il faut ajouter des taches au premier\n.");
 	  }else{
 	  	    printf("\n\tentrer l\'indice de la tache que voullez vous modifier: \n" );
 	        scanf("%d", &indice);	         
 	          if(indice>size){
-	        	printf("\tvous avez depassez le nombre des taches");
+	        	printf("\n\tvous avez depassez le nombre des taches");
 	         }else{
 			
 	          do{
-	printf("\n******** menu de modification ******** \t  \n");
-    printf("\t\t1 : titre\n");
-	printf("\t\t2 : description\n");
-	printf("\t\t3 : date d'echeance\n");
-	printf("\t\t4 : priorite\n");
-	printf("\t\t5 : statue\n");
-	printf("\t\t6 : tout les parametres\n");
-	printf("\t\t7 : quitter\n");
-	printf("\tchoisir le parametre a modifier de 1 a 6 : ");
+	printf("\n\n********************** menu de modification ************************ \t  \n");
+    printf("\n\t\t1 : titre\n");
+	printf("\n\t\t2 : description\n");
+	printf("\n\t\t3 : date d'echeance\n");
+	printf("\n\t\t4 : priorite\n");
+	printf("\n\t\t5 : statue\n");
+	printf("\n\t\t6 : tout les parametres\n");
+	printf("\n\t\t7 : quitter\n");
+	printf("\n\tchoisir le parametre a modifier de 1 a 6 : ");
 	scanf("%d",&c);
 
 	         switch(c){
 	         	 case 1:
-			        printf("entrer le nouveau titre de la tache %d : ",indice);
+			        printf("\n\tentrer le nouveau titre de la tache %d : ",indice);
 	                scanf("%s",tab[indice-1].titre);
 		    	break;
 		        case 2:
-			        printf("entrer la nouvelle description de la tache %d : ",indice);
+			        printf("\n\tentrer la nouvelle description de la tache %d : ",indice);
 	                 scanf(" %[^\n]s",&tab[indice-1].description);
 			    break;
 		        case 3:
 		        	int k;
 		        	 do{
 		        	 	//modification da la date
-		        	printf("\n******** menu de modification de la date ******** \t  \n");
-                    printf("\t\t1 : jour\n");
-	                printf("\t\t2 : mois\n");
-					printf("\t\t3 : annee\n");
-					printf("\t\t4 : date\n");
-					printf("\t\t5 : quitter\n");
-					printf("\tchoisir le parametre a modifier de 1 a 5 : ");
+		        	printf("\n****************** menu de modification de la date **************** \t  \n");
+                    printf("\n\t\t1 : jour\n");
+	                printf("\n\t\t2 : mois\n");
+					printf("\n\t\t3 : annee\n");
+					printf("\n\t\t4 : date\n");
+					printf("\n\t\t5 : quitter\n");
+					printf("\n\tchoisir le parametre a modifier de 1 a 5 : ");
 					scanf("%d",&k);
 					switch(k){
 					case 1:
-			        	printf("entrer le nouveau jour de la tache %d : ",indice);
+			        	printf("\nentrer le nouveau jour de la tache %d : ",indice);
 	                	scanf("%d",&tab[indice-1].date_echeance.jour);
 		    		break;
 		        	case 2:
-			        	printf("entrer le nouveau mois de la tache %d : ",indice);
+			        	printf("\nentrer le nouveau mois de la tache %d : ",indice);
 	                 	scanf("%d",&tab[indice-1].date_echeance.mois);
 			    	break;
 			    	case 3:
-			        	printf("entrer la nouvelle annee de la tache %d : ",indice);
+			        	printf("\nentrer la nouvelle annee de la tache %d : ",indice);
 	                 	scanf("%d",&tab[indice-1].date_echeance.annee);
 	                 	
 			    	break;
 			    	case 4:
-			    		printf("entrer le nouveau jour de la tache %d : ",indice);
+			    		printf("\nentrer le nouveau jour de la tache %d : ",indice);
 	                	scanf("%d",&tab[indice-1].date_echeance.jour);
-	                	printf("le jour est modifiee");
+	                	printf("+++++ le jour est modifiee +++++\n");
 	                	printf("entrer le nouveau mois de la tache %d : ",indice);
 	                 	scanf("%d",&tab[indice-1].date_echeance.mois);
-	                 	printf("le mois est modifiee");
-	                 	printf("entrer la nouvelle annee de la tache %d : ",indice);
+	                 	printf("+++++ le mois est modifiee +++++\n");
+	                 	printf("\nentrer la nouvelle annee de la tache %d : ",indice);
 	                 	scanf("%d",&tab[indice-1].date_echeance.annee);
 	                 	verificationTemps(tab);
-	                 	printf("l\'annee est modifiee");
+	                 	printf("+++++ l\'annee est modifiee +++++\n");
 	                break;
 					case 5:
 					break;
-					default : printf("veuillez choisir 1 , 2 , 3 ,4 ou 5");
+					default : printf("\nveuillez choisir 1 , 2 , 3 ,4 ou 5");
 					break; 	
 					}}
 					while(k!=5);
 			       
 			    break;
 	         	case 4:
-			        printf("entrer la nouvelle priorite de la tache %d : ",indice);
+			        printf("\n\tentrer la nouvelle priorite de la tache %d : ",indice);
 	                scanf(" %[^\n]s",tab[indice-1].priorite);
 		     	break;
 		     	case 5:
-			        printf("entrer la nouvelle statue de la tache %d : ",indice);
+			        printf("\n\tentrer la nouvelle statue de la tache %d : ",indice);
 	                scanf(" %[^\n]s",tab[indice-1].statue);
 		     	break;
 		        case 6:
-		          printf("entrer le nouveau titre de la tache %d : ",indice);
+		          printf("\n\tentrer le nouveau titre de la tache %d : ",indice);
 	              scanf(" %[^\n]s",tab[indice-1].titre);
 	    
-	              printf("entrer la nouvelle description de la tache %d : ",indice);
+	              printf("\n\tentrer la nouvelle description de la tache %d : ",indice);
 	              scanf(" %[^/]s",&tab[indice-1].description);
 	    
-	              	printf("entrer le nouveau jour de la tache %d : ",indice);
+	              	printf("\n\tentrer le nouveau jour de la tache %d : ",indice);
 	            	scanf("%d",&tab[indice-1].date_echeance.jour);
-	                printf("entrer le nouveau mois de la tache %d : ",indice);
+	                printf("\n\tentrer le nouveau mois de la tache %d : ",indice);
 	                scanf("%d",&tab[indice-1].date_echeance.mois);
-	                printf("entrer la nouvelle annee de la tache %d : ",indice);
+	                printf("\n\tentrer la nouvelle annee de la tache %d : ",indice);
 	                scanf("%d",&tab[indice-1].date_echeance.annee);
 	                verificationTemps(tab);	     
-	              	printf("entrer la nouvelle priorite de la tache %d : ",indice);
+	              	printf("\n\tentrer la nouvelle priorite de la tache %d : ",indice);
 	              	scanf(" %[^\n]s",tab[indice-1].priorite);
-	              	printf("entrer la nouvelle statue de la tache %d : ",indice);
+	              	printf("\n\tentrer la nouvelle statue de la tache %d : ",indice);
 	              	scanf(" %[^\n]s",tab[indice-1].statue);
 			    break;
 			    case 7:
 			    	break;
-		            default : printf("veuillez choisir 1 , 2 , 3 ,4 ou 5");
+		            default : printf("\nveuillez choisir 1 , 2 , 3 ,4 ou 5");
 			 } }
 			 while(c!=7);}
 			 }}
 
 //fonction afficher une tache
  void afficher_tache(struct tache tab[],int i){
- 	printf("\t \n********** information sur la tache: %d **********\t\n",i+1);
+ 		printf("-----------------------------affichage d\'une t%cche-----------------------------------\n",131);
+	
+ 	printf("\t \n******************* information sur la tache: %d *******************\t\n",i+1);
 		printf(" \tTitre : %s\n \tDate de creation jj/mm/aaaa : %d/%d/%d\n \tDescriprtion : %s\n \tDate_echeance : \n \tJour / Mois / Annee : \t%d / %d / %d\n \tPriorite : %s\n \tStatue : %s\n  ",tab[i].titre,tab[i].dateCreation.jour,tab[i].dateCreation.mois,tab[i].dateCreation.annee,tab[i].description,
 		tab[i].date_echeance.jour,tab[i].date_echeance.mois,tab[i].date_echeance.annee,tab[i].priorite,tab[i].statue);
  }
       
 //declaration de la fonction filtrer_par_priorite
 void filtrer_par_priorite(struct tache tab[]){
+		printf("-----------------------------filtrage par priorit%c---------------------------------------\n",130);
+	
 	if (size==0){
 	  		printf("\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
 	  }else{
-	
 	char fp[15];
 	printf("\tentrer le type de priorite (low/high) recherchee: ");
 	scanf(" %[^\n]s",fp);
@@ -259,12 +268,12 @@ void filtrer_par_priorite(struct tache tab[]){
 
 //declaration de la fonction filtrer_par_statue
 void filtrer_par_statue(struct tache tab[]){
+		printf("----------------------------- filtrage par statue ---------------------------------------\n");
 	if (size==0){
-	  		printf("\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
-	  }else{
-	
+	  		printf("\n\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
+	  }else{	
 	char fs[15];
-	printf("\tentrer le type de statue (a_faire, en_cours, termine) recherchee: ");
+	printf("\n\tentrer le type de statue (a_faire, en_cours, termine) recherchee: ");
 	scanf(" %[^\n]s",fs);
 	int found=0;
 	for(int i=0;i<size;i++){
@@ -274,7 +283,7 @@ void filtrer_par_statue(struct tache tab[]){
 		}
 	}
 	if(!(found)){
-		 printf("aucune tache avec cette statue.\n");
+		 printf("\n\taucune tache avec cette statue.\n");
 	}
 	
 }}
@@ -282,15 +291,17 @@ void filtrer_par_statue(struct tache tab[]){
 //declaration de la fonction filtrer_par_date_creation
 
  void filtrer_par_date_creation(struct tache tab[]){
+ 	printf("-----------------------------filtrage par date de cr%cation-----------------------------------\n",130);
+	
 	int j,m,an,found=0;
 		if (size==0){
-	  		printf("\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
+	  		printf("\n\til y\'a aucune tache a afficher il faut ajouter des taches au premier\n.");
 	  }else{
-	printf("\tentrer le jour (jj) recherchee: ");
+	printf("\n\tentrer le jour (jj) recherchee: ");
 	scanf("%d",&j);
-	printf("\tentrer le mois (mm) recherchee: ");
+	printf("\n\tentrer le mois (mm) recherchee: ");
 	scanf("%d",&m);
-	printf("\tentrer l\'annee (aaaa) recherchee: ");
+	printf("\n\tentrer l\'annee (aaaa) recherchee: ");
 	scanf("%d",&an);
 	for(int i=0;i<size;i++){
 		if(tab[i].dateCreation.jour == j && tab[i].dateCreation.mois == m && tab[i].dateCreation.annee == an){
@@ -298,7 +309,7 @@ void filtrer_par_statue(struct tache tab[]){
 			found=1;
 		}}
 	if(!(found)){
-		printf("aucune tache exist avec cette date de creation .\n");
+		printf("\n\taucune tache exist avec cette date de creation .\n");
 	}
 	
 }}
@@ -308,33 +319,35 @@ void filtrer_par_statue(struct tache tab[]){
 
 //declaration de la methode supprimer_par_indice
 void supprimer_par_indice(struct tache tab[] ,int n ,int indice){
+	printf("-----------------------------supprimer par indice---------------------------------------\n",130);
 	
 		if (size==0){
-	  		printf("\til y\'a aucune tache a supprimer il faut ajouter des taches au premier\n.");
+	  		printf("\n\til y\'a aucune tache a supprimer il faut ajouter des taches au premier\n.");
 	  }else{
 	  	printf("\n \tentrer l\'indice de la tache que voullez vous suprimer: " );
 	    scanf("%d", &indice);
 	       if(indice>size){
-		       printf("\tvous avez depassez le nombre des taches");
+		       printf("\n\tvous avez depassez le nombre des taches");
 	       }else{
 		       for (int i = indice-1; i<n; i++){
 		    	tab[i]=tab[i+1];
 		
 	    	}
 	    	size--;
-		printf("\t**La tache %d a ete supprimee**\n",indice);
+		printf("\n\t**La tache %d a ete supprimee**\n",indice);
 	
 	}}
 }
 
 //declaration de la methode supprimer_par_statue
 void supprimer_par_statue(struct tache tab[] ,int n){
+	printf("-----------------------------supprimer par statue---------------------------------------\n",130);
 	
 		if (size==0){
-	  		printf("\til y\'a aucune tache a supprimer il faut ajouter des taches au premier\n.");
+	  		printf("\n\til y\'a aucune tache a supprimer il faut ajouter des taches au premier\n.");
 	  }else{	
 	   	char fs[15];
-		printf("\tentrer le type de statue (a_faire, en_cours, termine) recherchee: ");
+		printf("\n\tentrer le type de statue (a_faire, en_cours, termine) recherchee: ");
 		scanf(" %[^\n]s",fs);
 		int found=0;
 		for(int i=0;i<size;i++){
@@ -344,9 +357,9 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 				size--;
 		}
 	}
-			printf("\t**Les taches avec priorite %s ont ete supprimee**\n",fs);
+			printf("\n\t**Les taches avec priorite %s ont ete supprimee**\n",fs);
 	if(!(found)){
-		 printf("aucune tache avec cette statue.\n");
+		 printf("\n\taucune tache avec cette statue.\n");
 	}	
 	}}
 	
@@ -354,25 +367,28 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 //declaration de la fonction filtrer_par_date_creation
 
  void supprimer_par_date_creation(struct tache tab[]){
+ 	printf("-----------------------------supprimer par date de cr%ation-----------------------------------\n",130);
+	
       	int j,m,an,found=0;
 		if (size==0){
-	  		printf("\til y\'a aucune tache a supprimer, il faut ajouter des taches au premier\n.");
+	  		printf("\n\til y\'a aucune tache a supprimer, il faut ajouter des taches au premier\n.");
 	  }else{
-	printf("\tentrer le jour (jj) recherchee: ");
+	printf("\n\tentrer le jour (jj) recherchee: ");
 	scanf("%d",&j);
-	printf("\tentrer le mois (mm) recherchee: ");
+	printf("\n\tentrer le mois (mm) recherchee: ");
 	scanf("%d",&m);
-	printf("\tentrer l\'annee (aaaa) recherchee: ");
+	printf("\n\tentrer l\'annee (aaaa) recherchee: ");
 	scanf("%d",&an);
 	for(int i=0;i<size;i++){
 		if(tab[i].dateCreation.jour == j && tab[i].dateCreation.mois == m && tab[i].dateCreation.annee == an){
 			tab[i]=tab[i+1];
 			found=1;
 				size--;
-		}}
-		printf("\t**Les taches avec cette date de creation %d/%d/%d ont ete supprimee**\n",j,m,an);
+		}printf("\n\t**Les taches avec cette date de creation %d/%d/%d ont ete supprimee**\n",j,m,an);
+		}
+		
 	if(!(found)){
-		printf("aucune tache exist avec cette date de creation .\n");
+		printf("\n\taucune tache exist avec cette date de creation .\n");
 	}
 	
 }
@@ -382,7 +398,7 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 int main(){	
 	struct tache tab[1000]; // Un tableau pour stocker jusqu'à n tache 
    do{
-	printf("\t\t ************ menu ************\t\t  \n");
+	printf("********************************** Menu ********************************\t\t  \n");
     printf("\t\t\t1 : ajouter\n\n");
 	printf("\t\t\t2 : afficher\n\n");
 	printf("\t\t\t3 : modifier\n\n");
@@ -405,12 +421,12 @@ int main(){
 		    
 		       int f;
 			  do{
-				printf("\n\t*****menu filtrage*****\n");
-				printf("\t 1:filtrer_par_priorite\n");
-				printf("\t 2:filtrer_par_date_creation\n");
-				printf("\t 3:filtrer_par_statue\n");
-				printf("\t 4:quitter\n");
-				printf("\tentrer votre choix: ");
+				printf("\n\n\*********************menu filtrage*******************\n");
+				printf("\n\t 1:filtrer_par_priorite\n");
+				printf("\n\t 2:filtrer_par_date_creation\n");
+				printf("\n\t 3:filtrer_par_statue\n");
+				printf("\n\t 4:quitter\n");
+				printf("\n\tentrer votre choix: ");
 				scanf("%d",&f);
 				switch(f){
 					case 1:
@@ -434,7 +450,7 @@ int main(){
 		case 5:
 			int s;
 			  do{
-				printf("\t*****menu supprission*****\n");
+				printf("\\n\n\t*********************menu supprission*********************\n");
 				printf("\t 1:supprimer_par_indice\n");
 				printf("\t 2:supprimer_par_date_creation\n");
 				printf("\t 3:supprimer_par_statue\n");
