@@ -72,26 +72,26 @@ void ajouter (struct tache tab[] ){
     	for(int i=size;i<n;i++){
     	tab[i].dateCreation = tempActuelle();
 		printf("\n################### La tache %d ####################\n",i+1)	;
-		printf("\n\n\tentrer le titre  : ");
+		printf("\n\tentrer le titre  : ");
 	    scanf(" %[^\n]s",tab[i].titre);
 	    
-	    printf("\n\n\tentrer la descrirtion : ");
+	    printf("\n\tentrer la descrirtion : ");
 	    scanf(" %[^\n]s",tab[i].description);
 	    
-	    printf("\n\n\tentrer le jour : ");
+	    printf("\n\tentrer le jour : ");
 	    scanf("%d",&tab[i].date_echeance.jour);
 	    
-	    printf("\n\n\tentrer le mois : ");
+	    printf("\n\tentrer le mois : ");
 	    scanf("%d",&tab[i].date_echeance.mois);
 	    
-	    printf("\n\n\tentrer l\'annee : ");
+	    printf("\n\tentrer l\'annee : ");
 	    scanf("%d",&tab[i].date_echeance.annee);
 	    verificationTemps(tab);
 	    
-	    printf("\n\n\tentrer la priorite (high or low) : ");
+	    printf("\n\tentrer la priorite (high or low) : ");
 	    scanf(" %[^\n]s",tab[i].priorite);
 	    
-	    printf("\n\n\tentrer la statue (a_faire, en_cours, termine) : ");
+	    printf("\n\tentrer la statue (a_faire, en_cours, termine) : ");
 	    scanf(" %[^\n]s",tab[i].statue);
 	    size=i+1; 
 						 }
@@ -444,6 +444,29 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 	  	printf("\nle nombre des taches avec la statue %s est: %d\n",word,cmp);
 	  }
   }
+  
+  //declaration de la fonction save
+  int save(struct tache tab[]){
+  	if (size==0){
+	  		printf("\n\til y\'a aucune tache a enregistrer il faut ajouter des taches au premier\n.");
+	  }else{
+  	FILE *fichier;
+  	fichier=fopen("tache_save.txt","a");	    	
+	  for (int i = 0; i < size; i++) {
+            fprintf(fichier, "************************ information sur la tache: %d ***********************\n", i + 1);
+            fprintf(fichier, "Titre : %s\n", tab[i].titre);
+            fprintf(fichier, "Date de creation jj/mm/aaaa : %d/%d/%d\n", tab[i].dateCreation.jour, tab[i].dateCreation.mois, tab[i].dateCreation.annee);
+            fprintf(fichier, "Description : %s\n", tab[i].description);
+            fprintf(fichier, "Date_echeance jj/mm/aaaa : %d/%d/%d\n", tab[i].date_echeance.jour, tab[i].date_echeance.mois, tab[i].date_echeance.annee);
+            fprintf(fichier, "Priorite : %s\n", tab[i].priorite);
+            fprintf(fichier, "Statut : %s\n\n", tab[i].statue);
+        }
+
+        fclose(fichier);
+	  	 printf("Les taches ont ete enregistrees dans taches.txt.\n");
+	 }
+  	return 0;
+  }
 
 
 int main(){	
@@ -456,8 +479,9 @@ int main(){
 	printf("\t\t\t4 : filtrer\n\n");
 	printf("\t\t\t5 : supprimer\n\n");
 	printf("\t\t\t6 : nombre_taches_statue\n\n");
-	printf("\t\t\t7 : quitter\n\n");
-	printf("\t\tchoisir un nombre de 1 a 7 : ");
+	printf("\t\t\t7 : fichier text\n\n");
+	printf("\t\t\t8 : quitter\n\n");
+	printf("\t\tchoisir un nombre de 1 a 8 : ");
 	scanf("%d",&choix);
 	switch(choix){
 		case 1: 
@@ -530,12 +554,15 @@ int main(){
 			nom_tache_statue(tab);
 			break;
 			case 7:
+				save(tab);
+		break;
+		case 8:
 		break;
   default : printf("\tveuillez choisir un nombre parmie les nombres exist dans le menu!!");
 
 	
 }}
- while (choix != 7);
+ while (choix != 8);
 return 0;
 }
 

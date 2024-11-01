@@ -1,0 +1,24 @@
+hello word************************ information sur la tache: 1 ***********************
+Titre : DDDDD
+Date de creation jj/mm/aaaa : 1/11/2024
+Description : DDDDD
+Date_echeance jj/mm/aaaa : 12/12/2024
+Priorite : high
+Statut : a_faire
+
+************************ information sur la tache: 2 ***********************
+Titre : fjfjf
+Date de creation jj/mm/aaaa : 1/11/2024
+Description : jsdjd fdjf
+Date_echeance jj/mm/aaaa : 13/12/2024
+Priorite : low
+Statut : en_cours
+
+************************ information sur la tache: 1 ***********************
+Titre : SSSSSS
+Date de creation jj/mm/aaaa : 1/11/2024
+Description : DDDDDD
+Date_echeance jj/mm/aaaa : 12/12/2024
+Priorite : low
+Statut : en_cours
+
