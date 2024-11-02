@@ -22,3 +22,27 @@ Date_echeance jj/mm/aaaa : 12/12/2024
 Priorite : low
 Statut : en_cours
 
+************************ information sur la tache: 1 ***********************
+Titre : DATA WORD
+Date de creation jj/mm/aaaa : 2/11/2024
+Description : presentation word 
+Date_echeance jj/mm/aaaa : 1/12/2024
+Priorite : low
+Statue : termine
+
+************************ information sur la tache: 2 ***********************
+Titre : Analyse data
+Date de creation jj/mm/aaaa : 2/11/2024
+Description : traiter les donn‚es sur l'excel
+Date_echeance jj/mm/aaaa : 4/11/2024
+Priorite : low
+Statue : en_cours
+
+************************ information sur la tache: 3 ***********************
+Titre : Gestion programme
+Date de creation jj/mm/aaaa : 2/11/2024
+Description : Ordonner les tƒches de tout la semaine 
+Date_echeance jj/mm/aaaa : 12/11/2024
+Priorite : high
+Statue : a_faire
+

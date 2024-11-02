@@ -46,7 +46,7 @@ void verificationTemps(struct tache tab[]){
                       tab[i].date_echeance.mois == tab[i].dateCreation.mois &&
                       (tab[i].date_echeance.jour < tab[i].dateCreation.jour ||tab[i].date_echeance.jour > 31))) {
                 printf("La date d\'echeance est inferieure a la date actuelle ou la valeur du jour ou mois est invalide.\n Entrer une nouvelle date pour la tache %d :\n", i + 1);
-                printf("Année : ");
+                printf("Annee : ");
                 scanf("%d", &tab[i].date_echeance.annee);
                 printf("Mois : ");
                 scanf("%d", &tab[i].date_echeance.mois);
@@ -121,7 +121,7 @@ void afficher(struct tache tab[],int n ){
 
 //declaration de la fonction modifier
 void modifier(struct tache tab[] ,int n ,int indice){
-	afficher(tab,n);
+	//afficher(tab,n);
 		printf("-----------------------------modifier une t%cche---------------------------------------\n",131);
 	
 	int c;
@@ -136,14 +136,14 @@ void modifier(struct tache tab[] ,int n ,int indice){
 			
 	          do{
 	printf("\n\n********************** menu de modification ************************ \t  \n");
-    printf("\n\t\t1 : titre\n");
-	printf("\n\t\t2 : description\n");
-	printf("\n\t\t3 : date d'echeance\n");
-	printf("\n\t\t4 : priorite\n");
-	printf("\n\t\t5 : statue\n");
-	printf("\n\t\t6 : tout les parametres\n");
-	printf("\n\t\t7 : quitter\n");
-	printf("\n\tchoisir le parametre a modifier de 1 a 6 : ");
+    printf("\t\t1 : titre\n");
+	printf("\t\t2 : description\n");
+	printf("\t\t3 : date d'echeance\n");
+	printf("\t\t4 : priorite\n");
+	printf("\t\t5 : statue\n");
+	printf("\t\t6 : tout les parametres\n");
+	printf("\t\t7 : quitter\n");
+	printf("\tchoisir le parametre a modifier de 1 a 7 : ");
 	scanf("%d",&c);
 
 	         switch(c){
@@ -162,12 +162,12 @@ void modifier(struct tache tab[] ,int n ,int indice){
 		        	 do{
 		        	 	//modification da la date
 		        	printf("\n****************** menu de modification de la date **************** \t  \n");
-                    printf("\n\t\t1 : jour\n");
-	                printf("\n\t\t2 : mois\n");
-					printf("\n\t\t3 : annee\n");
-					printf("\n\t\t4 : date\n");
-					printf("\n\t\t5 : quitter\n");
-					printf("\n\tchoisir le parametre a modifier de 1 a 5 : ");
+                    printf("\t\t1 : jour\n");
+	                printf("\t\t2 : mois\n");
+					printf("\t\t3 : annee\n");
+					printf("\t\t4 : date\n");
+					printf("\t\t5 : quitter\n");
+					printf("\tchoisir le parametre a modifier de 1 a 5 : ");
 					scanf("%d",&k);
 					switch(k){
 					case 1:
@@ -230,12 +230,12 @@ void modifier(struct tache tab[] ,int n ,int indice){
 			       
 			    break;
 	         	case 4:
-			        printf("\n\tentrer la nouvelle priorite de la tache %d : ",indice);
+			        printf("\n\tentrer la nouvelle priorite de la tache %d (high or low): ",indice);
 	                scanf(" %[^\n]s",tab[indice-1].priorite);
 	                printf("+++++ la priorite est modifiee +++++\n");
 		     	break;
 		     	case 5:
-			        printf("\n\tentrer la nouvelle statue de la tache %d : ",indice);
+			        printf("\n\tentrer la nouvelle statue de la tache %d (a_faire, en_cours, termine): ",indice);
 	                scanf(" %[^\n]s",tab[indice-1].statue);
 	                printf("+++++ la statue est modifiee +++++\n");
 		     	break;
@@ -261,7 +261,7 @@ void modifier(struct tache tab[] ,int n ,int indice){
 			    break;
 			    case 7:
 			    	break;
-		            default : printf("\nveuillez choisir 1 , 2 , 3 ,4 ou 5");
+		            default : printf("\nveuillez choisir 1 , 2 , 3 ,4, 5,6 ou 7");
 			 } }
 			 while(c!=7);}
 			 }}
@@ -459,11 +459,11 @@ void supprimer_par_statue(struct tache tab[] ,int n){
             fprintf(fichier, "Description : %s\n", tab[i].description);
             fprintf(fichier, "Date_echeance jj/mm/aaaa : %d/%d/%d\n", tab[i].date_echeance.jour, tab[i].date_echeance.mois, tab[i].date_echeance.annee);
             fprintf(fichier, "Priorite : %s\n", tab[i].priorite);
-            fprintf(fichier, "Statut : %s\n\n", tab[i].statue);
+            fprintf(fichier, "Statue : %s\n\n", tab[i].statue);
         }
 
         fclose(fichier);
-	  	 printf("Les taches ont ete enregistrees dans taches.txt.\n");
+	  	 printf("Les taches ont ete enregistrees dans tache_save.txt.\n");
 	 }
   	return 0;
   }
@@ -473,14 +473,14 @@ int main(){
 	struct tache tab[1000]; // Un tableau pour stocker jusqu'à n tache 
    do{
 	printf("********************************** Menu ********************************\t\t  \n");
-    printf("\t\t\t1 : ajouter\n\n");
-	printf("\t\t\t2 : afficher\n\n");
-	printf("\t\t\t3 : modifier\n\n");
-	printf("\t\t\t4 : filtrer\n\n");
-	printf("\t\t\t5 : supprimer\n\n");
-	printf("\t\t\t6 : nombre_taches_statue\n\n");
-	printf("\t\t\t7 : fichier text\n\n");
-	printf("\t\t\t8 : quitter\n\n");
+    printf("\t\t\t1 : ajouter\n");
+	printf("\t\t\t2 : afficher\n");
+	printf("\t\t\t3 : modifier\n");
+	printf("\t\t\t4 : filtrer\n");
+	printf("\t\t\t5 : supprimer\n");
+	printf("\t\t\t6 : nombre_taches_statue\n");
+	printf("\t\t\t7 : fichier text\n");
+	printf("\t\t\t8 : quitter\n");
 	printf("\t\tchoisir un nombre de 1 a 8 : ");
 	scanf("%d",&choix);
 	switch(choix){
