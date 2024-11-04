@@ -377,7 +377,7 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 	
 		if (size==0){
 	  		printf("\n\til y\'a aucune tache a supprimer il faut ajouter des taches au premier\n.");
-	  }else{	
+	  	}else{	
 	   	char fs[15];
 		printf("\n\tentrer le type de statue (a_faire, en_cours, termine) recherchee: ");
 		scanf(" %[^\n]s",fs);
@@ -396,7 +396,7 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 	}}
 	
 	
-//declaration de la fonction filtrer_par_date_creation
+//declaration de la fonction supprimer_par_date_creation
 
  void supprimer_par_date_creation(struct tache tab[]){
  	printf("-----------------------------supprimer par date de cr%ation-----------------------------------\n",130);
@@ -451,7 +451,7 @@ void supprimer_par_statue(struct tache tab[] ,int n){
 	  		printf("\n\til y\'a aucune tache a enregistrer il faut ajouter des taches au premier\n.");
 	  }else{
   	FILE *fichier;
-  	fichier=fopen("tache_save.txt","a");	    	
+  	fichier=fopen("save.txt","a");	    	
 	  for (int i = 0; i < size; i++) {
             fprintf(fichier, "************************ information sur la tache: %d ***********************\n", i + 1);
             fprintf(fichier, "Titre : %s\n", tab[i].titre);
@@ -463,11 +463,46 @@ void supprimer_par_statue(struct tache tab[] ,int n){
         }
 
         fclose(fichier);
-	  	 printf("Les taches ont ete enregistrees dans tache_save.txt.\n");
+	  	 printf("Les taches ont ete enregistrees dans save.txt.\n");
 	 }
   	return 0;
   }
+  
+  
+//declaration de la fonction trier_croissante
+void trier_croissante(struct tache tab[]){
+	struct tache temp;
+	int i;
+	for( i=0;i<n-1;i++){
+		for(int j=i+1;j<n;j++){
+			if (tab[i].date_echeance.annee >tab[j].date_echeance.annee ||
+                     tab[i].date_echeance.annee == tab[j].date_echeance.annee && 
+                      tab[i].date_echeance.mois > tab[j].date_echeance.mois  ||
+                     tab[i].date_echeance.mois == tab[j].date_echeance.mois &&
+                      tab[i].date_echeance.jour > tab[j].date_echeance.jour ){					  
+                      temp= tab[i];
+                      tab[i]=tab[j];
+                      tab[j]=temp;
+		}
+	}
+}
+	afficher(tab,i);
+}
 
+void affiche_nombre_description(struct tache tab[]){
+	int i,j;
+	
+//for(i=0;i<size;i++){
+	int taille=strlen(tab[i].description);
+	for(j=0;j<taille;j++){
+
+	while(j<3){
+		printf("%s\n",tab[j].description);
+		j++;
+	}
+//}
+}
+}
 
 int main(){	
 	struct tache tab[1000]; // Un tableau pour stocker jusqu'à n tache 
@@ -479,9 +514,10 @@ int main(){
 	printf("\t\t\t4 : filtrer\n");
 	printf("\t\t\t5 : supprimer\n");
 	printf("\t\t\t6 : nombre_taches_statue\n");
-	printf("\t\t\t7 : fichier text\n");
-	printf("\t\t\t8 : quitter\n");
-	printf("\t\tchoisir un nombre de 1 a 8 : ");
+	printf("\t\t\t7 : trier_croissante\n");
+	printf("\t\t\t8 : fichier text\n");
+	printf("\t\t\t9 : quitter\n");
+	printf("\t\tchoisir un nombre de 1 a 9 : ");
 	scanf("%d",&choix);
 	switch(choix){
 		case 1: 
@@ -553,16 +589,20 @@ int main(){
 		case 6:
 			nom_tache_statue(tab);
 			break;
-			case 7:
-				save(tab);
+		case 7:
+			trier_croissante(tab);
 		break;
 		case 8:
+				save(tab);
 		break;
-  default : printf("\tveuillez choisir un nombre parmie les nombres exist dans le menu!!");
+		case 9:
+			affiche_nombre_description(tab);
+		break;
+  default : printf("\tveuillez choisir un nombre parmie les nombres exist dans le menu!!\n");
 
 	
 }}
- while (choix != 8);
+ while (choix != 9);
 return 0;
 }
 

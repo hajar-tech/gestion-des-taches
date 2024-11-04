@@ -46,3 +46,11 @@ Date_echeance jj/mm/aaaa : 12/11/2024
 Priorite : high
 Statue : a_faire
 
+************************ information sur la tache: 1 ***********************
+Titre : UDUEE
+Date de creation jj/mm/aaaa : 4/11/2024
+Description : DJDJD
+Date_echeance jj/mm/aaaa : 12/12/2024
+Priorite : low
+Statue : a_faire
+
